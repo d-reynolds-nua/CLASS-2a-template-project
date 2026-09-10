@@ -19,6 +19,7 @@ AUDIO_FILE = "audio/track.wav"
 WINDOW_WIDTH = 1280
 WINDOW_HEIGHT = 720
 WINDOW_TITLE = "BSP2a Project"
+TARGET_FPS = 60
 
 
 def run_engine_only() -> None:
@@ -31,13 +32,18 @@ def run_engine_only() -> None:
     engine.run(feature_source=lambda: {})
 
 
-def run_full_app() -> None:
-    """Runs the full project: loads the audio pipeline, then the engine."""
-    pipeline = AudioPipeline(AUDIO_FILE)
-    pipeline.load()
+def run_full_app():
+    engine = ENGINE(width=WINDOW_WIDTH, height=WINDOW_HEIGHT, title=WINDOW_TITLE, target_fps=TARGET_FPS)
 
-    engine = ENGINE(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE)
-    engine.run(feature_source=pipeline.get_features)
+    pipeline = AudioPipeline(file_path=AUDIO_FILE)
+    try:
+        pipeline.load()
+        feature_source = pipeline.get_features
+    except NotImplementedError:
+        print("AudioPipeline not implemented yet -- running with a blank feature source.")
+        feature_source = lambda: {}
+
+    engine.run(feature_source=feature_source)
 
 
 if __name__ == "__main__":
