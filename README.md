@@ -53,7 +53,7 @@ itself (covered below, and in §11).
 
 On the **NUA lab machines**, git should already be installed — if `git` is
 not recognised as a command, don't try to install it yourself (you don't
-have admin rights on lab machines); contact your tutor instead. On your
+have admin rights on lab machines); contact Danny or Jawwad instead. On your
 **own machine**, if you don't already have git, install it from
 [git-scm.com](https://git-scm.com/downloads) (Windows/Mac) or via your
 package manager (`sudo pacman -S git` on Arch).
@@ -129,7 +129,7 @@ manually activate anything.
 
 (If you don't have `uv` installed yet, see
 [the official install instructions](https://docs.astral.sh/uv/getting-started/installation/)
-— on a lab machine, check with your tutor first if it isn't already
+— on a lab machine, check with Danny or Jawwad first if it isn't already
 present, since you won't have admin rights to install it yourself.)
 
 **On a fresh, unmodified clone, `uv run python main.py` opens a blank
@@ -144,7 +144,7 @@ toolchain, this most likely means the Python version on that machine falls
 outside the range this project supports (see `pyproject.toml`'s
 `requires-python`). **Don't attempt to fix a missing build toolchain
 yourself** — you don't have admin rights to install one on a lab machine
-anyway. Contact your tutor instead.
+anyway. Contact Danny or Jawwad instead.
 
 ## 6. Working across lab and home machines
 
@@ -235,6 +235,6 @@ fork like any other project file.
    not respect the `uv`-managed environment without extra configuration.
 
 On the NUA lab machines, VSCode is likely already installed — if it isn't,
-check with your tutor rather than trying to install it yourself (no admin
+check with Danny or Jawwad rather than trying to install it yourself (no admin
 rights). On your own machine, install it from
 [code.visualstudio.com](https://code.visualstudio.com/).
