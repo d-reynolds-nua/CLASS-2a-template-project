@@ -27,10 +27,11 @@ TARGET_FPS = 60
 def run_engine_only() -> None:
     """Runs the chosen engine with no audio pipeline involved.
 
-    Use this to confirm your engine opens a window and closes cleanly
-    before AudioPipeline is implemented — see the README.
+    Optional helper for checking your engine in isolation — run_full_app()
+    already falls back to a blank feature source until AudioPipeline is
+    implemented, so you don't need this to get started.
     """
-    engine = ENGINE(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE)
+    engine = ENGINE(width=WINDOW_WIDTH, height=WINDOW_HEIGHT, title=WINDOW_TITLE, target_fps=TARGET_FPS)
     engine.run(feature_source=lambda: {})
 
 
