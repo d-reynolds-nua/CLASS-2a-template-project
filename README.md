@@ -132,9 +132,10 @@ manually activate anything.
 — on a lab machine, check with your tutor first if it isn't already
 present, since you won't have admin rights to install it yourself.)
 
-**On a fresh, unmodified clone, `uv run python main.py` is expected to
-crash** with a `NotImplementedError`. That's not a broken template — see
-§8.
+**On a fresh, unmodified clone, `uv run python main.py` opens a blank
+window.** The terminal prints one line saying the audio pipeline isn't
+implemented yet and a blank feature source is being used instead — that's
+expected, see §8. Closing the window or pressing Esc exits cleanly.
 
 ## 5. Windows lab troubleshooting note
 
@@ -186,17 +187,13 @@ engines/
 **Left for you to implement:**
 - `AudioPipeline.load()` and `AudioPipeline.get_features()` in
   `audio/pipeline.py` — both currently `raise NotImplementedError`. These
-  are your first tasks.
+  are your first tasks. They're intentionally left for you, not missing by
+  accident.
 
-This is exactly why a fresh, unmodified clone crashes immediately when you
-run `main.py` — that crash is **expected**, not a sign the template is
-broken. It's telling you where to start.
-
-**You can verify your chosen engine works before touching the audio
-pipeline at all** — call `run_engine_only()` instead of `run_full_app()`
-at the bottom of `main.py`. This runs your engine with no pipeline
-involved, so you can confirm your window opens and closes correctly early
-on, well before you get to implementing audio loading.
+Until they're implemented, `main.py` falls back to a blank feature source,
+which is why a fresh clone opens an empty window and prints a "not
+implemented yet" message rather than crashing. That message is telling you
+where to start.
 
 ## 9. How to switch engines
 
