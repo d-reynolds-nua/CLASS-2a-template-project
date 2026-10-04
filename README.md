@@ -1,8 +1,8 @@
-# BSP2a Template Project
+# CLASS-2a Template Project
 
 ## 1. What this is
 
-This repository is the starting-point template for the BSP2a project: a
+This repository is the starting-point template for the CLASS-2a project: a
 real-time, audio-driven interactive visualisation. You **fork** this
 repository and build your entire project on top of it — it is not a
 reference implementation to copy from, and you are not expected to build
