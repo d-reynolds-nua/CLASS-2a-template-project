@@ -1,7 +1,7 @@
 [project]
-name = "bsp2a-template-project"
+name = "class-2a-template-project"
 version = "0.1.0"
-description = "BSP2a template project: a real-time, audio-driven interactive visualisation"
+description = "CLASS-2a template project: a real-time, audio-driven interactive visualisation"
 readme = "README.md"
 requires-python = ">=3.10,<3.13"
 dependencies = [

@@ -20,7 +20,7 @@ ENGINE: type[BaseEngine] = PygameEngine
 AUDIO_FILE = "audio/track.wav"
 WINDOW_WIDTH = 1280
 WINDOW_HEIGHT = 720
-WINDOW_TITLE = "BSP2a Project"
+WINDOW_TITLE = "CLASS-2a Project"
 TARGET_FPS = 60
 
 
