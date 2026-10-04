@@ -5,6 +5,8 @@ options — committing to one engine tier and one audio file is a project
 decision, not something to toggle per run.
 """
 
+from collections.abc import Callable
+
 from audio.pipeline import AudioPipeline
 from engines.base_engine import BaseEngine
 from engines.modern_gl_engine import ModernGLEngine
@@ -32,15 +34,40 @@ def run_engine_only() -> None:
     engine.run(feature_source=lambda: {})
 
 
+NOT_IMPLEMENTED_MESSAGE = "AudioPipeline not implemented yet -- running with a blank feature source."
+
+
+def tolerate_not_implemented(get_features: Callable[[], dict]) -> Callable[[], dict]:
+    """Wraps get_features so a NotImplementedError yields {} for that frame.
+
+    The message is printed once, not every frame. Only NotImplementedError is
+    caught — any other exception (e.g. running off the end of the audio)
+    still propagates so you can see it.
+    """
+    warned = False
+
+    def feature_source() -> dict:
+        nonlocal warned
+        try:
+            return get_features()
+        except NotImplementedError:
+            if not warned:
+                print(NOT_IMPLEMENTED_MESSAGE)
+                warned = True
+            return {}
+
+    return feature_source
+
+
 def run_full_app():
     engine = ENGINE(width=WINDOW_WIDTH, height=WINDOW_HEIGHT, title=WINDOW_TITLE, target_fps=TARGET_FPS)
 
     pipeline = AudioPipeline(file_path=AUDIO_FILE)
     try:
         pipeline.load()
-        feature_source = pipeline.get_features
+        feature_source = tolerate_not_implemented(pipeline.get_features)
     except NotImplementedError:
-        print("AudioPipeline not implemented yet -- running with a blank feature source.")
+        print(NOT_IMPLEMENTED_MESSAGE)
         feature_source = lambda: {}
 
     engine.run(feature_source=feature_source)
